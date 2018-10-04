@@ -27,8 +27,15 @@ pipeline {
         stage('Install CloudFoundation ToolKit') {
             steps {
                 echo '------------------'
-                echo 'checkout tool branch' 
-                sh 'git checkout tool'
+                echo 'Checkout `tool` branch' 
+                checkout([
+                    $class: 'GitSCM', 
+                    branches: [[name: '*/tool']], 
+                    doGenerateSubmoduleConfigurations: false, 
+                    extensions: [], 
+                    submoduleCfg: [], 
+                    userRemoteConfigs: [[url: 'https://github.com/sourced/deploymentmanager-samples/']]
+                ])
                 echo '------------------'
                 echo 'Install CFT tool (make build, sudo make install)'
                 sh 'make build && sudo make install'
