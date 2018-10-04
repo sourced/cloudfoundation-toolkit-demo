@@ -37,8 +37,11 @@ pipeline {
                     userRemoteConfigs: [[url: 'https://github.com/sourced/deploymentmanager-samples/']]
                 ])
                 echo '------------------'
+                echo 'pwd'
+                sh 'ls -laFg $(pwd)'
+                echo '------------------'
                 echo 'Install CFT tool (make build, sudo make install)'
-                sh 'make build && sudo make install'
+                sh 'cd community/cloud-foundation && make build && sudo make install'
                 echo '------------------'
                 echo 'cft help command'
                 sh 'cft -h'
