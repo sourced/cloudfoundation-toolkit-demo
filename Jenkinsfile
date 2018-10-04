@@ -8,19 +8,33 @@ pipeline {
         JENKINS_SA_ACCOUNT = "cft-jenkins-sa@sourced-root.iam.gserviceaccount.com"
     }
     stages{
-        stage('Checkout DM Samples cloud-foundation branch') {
+        stage('Checkout DM Repo') {
             steps {
+                echo '------------------'
                 echo 'Cloning github repo' 
                 git branch: 'cloud-foundation', url: 'https://github.com/sourced/deploymentmanager-samples'
             }
         }
-        stage('ServiceAccount Login') {
+        stage('Authenticate with ServiceAccount') {
             steps {
                 // echo 'printenv'
                 // sh 'printenv'
                 echo '------------------'
                 echo 'Logging into gcloud with $JENKINS_SA_ACCOUNT'
                 sh 'gcloud auth activate-service-account $JENKINS_SA_ACCOUNT --key-file=$HOME/cft-jenkins-sa.json'
+            }
+        }
+        stage('Install CloudFoundation ToolKit') {
+            steps {
+                echo '------------------'
+                echo 'checkout tool branch' 
+                sh 'git checkout tool'
+                echo '------------------'
+                echo 'Install CFT tool (make build, sudo make install)'
+                sh 'make build && sudo make install'
+                echo '------------------'
+                echo 'cft help command'
+                sh 'cft -h'
             }
         }
         stage('Test Access') {
@@ -31,6 +45,10 @@ pipeline {
                 echo '-----------------'
                 echo 'gcloud compute networks list'
                 sh 'gcloud compute networks list'
+                echo '-----------------'
+                echo 'gcloud compute networks create test-jenkins-network --project sourced-dmtemplates-praveenc'
+                sh 'gcloud compute networks create test-jenkins-network --project sourced-dmtemplates-praveenc'
+                
             }
         }
     }
