@@ -1,0 +1,48 @@
+name: my-firewall-prod
+description: My firewalls deployment
+
+imports:
+  - path: templates/firewall/firewall.py
+resources:
+  - type: templates/firewall/firewall.py
+    name: app-team-1-firewall
+    properties:
+      network: $(out.my-networks.my-network-prod.name)
+      rules:
+        - name: allow-proxy-from-inside-app-team-1
+          allowed:
+            - IPProtocol: tcp
+              ports:
+                - "80"
+                - "444"
+          description: This rule allows connectivity to the HTTP proxies
+          direction: INGRESS
+          sourceRanges:
+            - 10.0.0.0/8
+        - name: allow-dns-from-app-team-1
+          allowed:
+            - IPProtocol: udp
+              ports:
+                - "53"
+            - IPProtocol: tcp
+              ports:
+                - "53"
+          description: this rule allows DNS queries to google's 8.8.8.8
+          direction: EGRESS
+          destinationRanges:
+            - 8.8.8.8/32
+  - type: templates/firewall/firewall.py
+    name: app-team-2-firewall
+    properties:
+      network: $(out.my-networks.my-network-dev.name)
+      rules:
+        - name: allow-proxy-from-inside-app-team-2
+          allowed:
+            - IPProtocol: tcp
+              ports:
+                - "80"
+                - "444"
+          description: This rule allows connectivity to the HTTP proxies
+          direction: INGRESS
+          sourceRanges:
+            - 10.0.0.0/8

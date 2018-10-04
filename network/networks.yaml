@@ -1,0 +1,23 @@
+name: my-networks
+description: my networks deployment
+
+imports:
+  - path: templates/network/network.py
+
+resources:
+  - type: templates/network/network.py
+    name: app-team-1-network
+    properties:
+      autoCreateSubnetworks: false
+      subNetworks:
+        - name: app-team-1-subnet
+          region: us-east1
+          ipCidrRange: 192.168.0.0/24
+  - type: templates/network/network.py
+    name: app-team-2-network
+    properties:
+      autoCreateSubnetworks: false
+      subNetworks:
+        - name: app-team-2-subnet
+          region: us-east1
+          ipCidrRange: 192.168.1.0/24
