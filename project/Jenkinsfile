@@ -7,12 +7,12 @@ pipeline {
         stage('Checkout Repos') {
             steps {
                 echo '------------------'
+                echo 'Cleaning dirs'
+                sh 'rm -rf cft demo'
+                echo '------------------'
                 echo 'Cloning DM Samples github repo' 
                 sh 'git clone https://github.com/sourced/deploymentmanager-samples cft'
                 sh 'cd cft && git checkout cloud-foundation && cd ..'
-                echo '------------------'
-                echo 'Cloning CFT github repo' 
-                sh 'git clone https://github.com/sourced/cloudfoundation-toolkit-demo demo'
             }
         }
         stage('Checking cft Installation') {
@@ -27,10 +27,10 @@ pipeline {
         }
         stage('Create Project') {
             environment {
-                PROJECT_CONFIG="$WORKSPACE/demo/project/project.yaml"
+                CONFIG="project/"
             }
             steps {
-                sh '. ~/cft-env-vars && cd cft/community/cloud-foundation && cft apply $PROJECT_CONFIG'
+                sh '. ~/cft-env-vars && cd cft/community/cloud-foundation && cft apply $CONFIG'
             }
         }
     }
