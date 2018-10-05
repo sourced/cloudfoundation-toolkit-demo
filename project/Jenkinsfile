@@ -9,7 +9,7 @@ pipeline {
                 echo '-----------------'
                 echo 'Source CFT_ENV_VARS'
                 script {
-                    source $HOME/cft-env-vars
+                    source /home/tomcat/cft-env-vars
                 }
                 echo '-----------------'
                 sh 'printenv'
