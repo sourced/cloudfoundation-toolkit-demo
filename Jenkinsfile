@@ -12,6 +12,24 @@ pipeline {
             }
         }
         stage('Test Access') {
+            // environment {
+            //     CFT_ORGANIZATION_FOLDER_ID = """${sh(
+            //             returnStdout: true,
+            //             script: 'cp /home/tomcat/cft-env-vars . && . ./cft-env-vars && echo $CFT_ORGANIZATION_FOLDER_ID'
+            //         )}""" 
+            //     CFT_ORGANIZATION_ID = """${sh(
+            //             returnStdout: true,
+            //             script: 'cp /home/tomcat/cft-env-vars . && . ./cft-env-vars && echo $CFT_ORGANIZATION_ID'
+            //         )}""" 
+            //     CFT_BILLING_ACCOUNT_ID = """${sh(
+            //             returnStdout: true,
+            //             script: 'cp /home/tomcat/cft-env-vars . && . ./cft-env-vars && echo $CFT_BILLING_ACCOUNT_ID'
+            //         )}""" 
+            //     CFT_PIPELINE_DEPLOYER_ROLE = """${sh(
+            //             returnStdout: true,
+            //             script: 'cp /home/tomcat/cft-env-vars . && . ./cft-env-vars && echo $CFT_PIPELINE_DEPLOYER_ROLE'
+            //         )}""" 
+            // }
             steps {
                 echo '-----------------'
                 echo 'Source CFT_ENV_VARS'

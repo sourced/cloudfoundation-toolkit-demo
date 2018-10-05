@@ -1,18 +1,4 @@
 # Example of the project template usage.
-#
-# In this example, a project is created, along with some of the
-# resources that an enterprise is likely to need for regular operations.
-#
-# Note that the `parent_type` property defaults to "organization", so it
-# does not need to be specified in the config. It is specified here for
-# informational purposes. Allowed values are 'organization' or 'folder'
-#
-# See `templates/project.py.schema` for detailed information on the
-# properties.
-#
-# Replace the `parent_id` placeholder with your organization ID/folder ID.
-# Replace the `billing_account_id` placeholder with your billing
-# account ID.
 
 imports:
   - path: templates/project/project.py
@@ -23,8 +9,8 @@ resources:
     type: project.py
     properties:
       parent:
-        type: folder # organization or folder
-        id: {{env.CFT_ORGANIZATION_FOLDER_ID}} # OrgID or folder ID
+        type: folder
+        id: {{env.CFT_ORGANIZATION_FOLDER_ID}}
       billingAccountId: {{env.CFT_BILLING_ACCOUNT_ID}}
       activateApis:
         - compute.googleapis.com
@@ -38,8 +24,4 @@ resources:
             - roles/viewer
             - {{env.CFT_PIPELINE_DEPLOYER_ROLE}}
           networkAccess: true
-      usageExportBucket: true
-      # sharedVPC: test-vpc-host-project
-      # sharedVPCSubnets:
-      #   - subnetId: subnet-1
-      #     region: us-east1
+      usageExportBucket: false
