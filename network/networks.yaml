@@ -1,4 +1,4 @@
-name: my-networks
+name: cft-demo-networks
 description: my networks deployment
 
 imports:
