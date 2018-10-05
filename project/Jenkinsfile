@@ -8,7 +8,7 @@ pipeline {
             steps {
                 echo '-----------------'
                 echo 'Source CFT_ENV_VARS'
-                sh 'source /home/tomcat/cft-env-vars'
+                sh './home/tomcat/cft-env-vars'
                 echo '-----------------'
                 sh 'printenv'
                 echo '-----------------'
