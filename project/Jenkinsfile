@@ -12,7 +12,7 @@ pipeline {
                 sh 'cft -h'
                 echo '-----------------'
                 echo 'Source CFT_ENV_VARS'
-                sh 'cp /home/tomcat/cft-env-vars . && source cft-env-vars'
+                sh 'cp /home/tomcat/cft-env-vars . && . ./cft-env-vars'
                 echo '-----------------'
                 sh 'printenv'
             }
