@@ -9,7 +9,7 @@ pipeline {
                 echo '------------------'
                 echo 'Cloning DM Samples github repo' 
                 sh 'git clone https://github.com/sourced/deploymentmanager-samples cft'
-                sh 'git checkout cloud-foundation'
+                sh 'cd cft && git checkout cloud-foundation && cd ..'
                 echo '------------------'
                 echo 'Cloning CFT github repo' 
                 sh 'git clone https://github.com/sourced/cloudfoundation-toolkit-demo demo'
