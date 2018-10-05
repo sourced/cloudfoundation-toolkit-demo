@@ -15,16 +15,17 @@ pipeline {
                 sh 'cp /home/tomcat/cft-env-vars . && . ./cft-env-vars && printenv'
             }
         }
-        // stage('Create Project') {
-        //     steps {
-        //         echo '-----------------'
-        //         echo 'Source cft environment variables, running cft'
-        //         sh 'cp /home/tomcat/cft-env-vars . && \
-        //             . ./cft-env-vars && printenv && \
-        //             cft create project.yaml
-        //             '
-        //     }
-        // }
+        stage('Create Project') {
+            steps {
+                echo '-----------------'
+                sh 'printenv'
+                // echo 'Source cft environment variables, running cft'
+                // sh 'cp /home/tomcat/cft-env-vars . && \
+                //     . ./cft-env-vars && printenv && \
+                //     cft create project.yaml
+                //     '
+            }
+        }
     }
     post {
         always {
