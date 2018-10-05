@@ -12,20 +12,22 @@ pipeline {
                 sh 'cft -h'
                 echo '-----------------'
                 echo 'Source CFT_ENV_VARS'
-                sh 'cp /home/tomcat/cft-env-vars . && . ./cft-env-vars'
-                echo '-----------------'
-                sh 'printenv'
+                script{
+                    cp /home/tomcat/cft-env-vars . 
+                    . ./cft-env-vars
+                    printenv
+                }
             }
         }
-        stage('Create Project') {
-            steps {
-                echo '-----------------'
-                sh 'printenv'
-                echo '-----------------'
-                // echo 'cft create project.yaml'
-                // sh 'cft create project.yaml'
-            }
-        }
+        // stage('Create Project') {
+        //     steps {
+        //         echo '-----------------'
+        //         sh 'printenv'
+        //         echo '-----------------'
+        //         // echo 'cft create project.yaml'
+        //         // sh 'cft create project.yaml'
+        //     }
+        // }
     }
     post {
         // always {
