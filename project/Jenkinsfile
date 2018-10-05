@@ -15,7 +15,7 @@ pipeline {
         stage('Create Project') {
             steps {
                 echo '------------------'
-                sh '. ~/cft-env-vars && cft project.yaml'
+                sh '. ~/cft-env-vars && cft apply project.yaml'
             }
         }
     }
