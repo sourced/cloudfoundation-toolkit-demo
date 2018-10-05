@@ -7,6 +7,8 @@ pipeline {
         stage('Checking cft Installation') {
             steps {
                 echo 'Checking CFT Version'
+                sh 'cft -v'
+                echo 'Checking CFT Help'
                 sh 'cft -h'
             }
         }
