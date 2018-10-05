@@ -25,11 +25,13 @@ pipeline {
                 sh 'cft -h'
             }
         }
-        stage('Create Project') {
+        stage('Execute CFT') {
             environment {
                 CONFIG="project/"
             }
             steps {
+                echo '------------------'
+                echo 'Creating $CONFIG'
                 sh '. ~/cft-env-vars && cd cft/community/cloud-foundation && cft apply $CONFIG'
             }
         }
