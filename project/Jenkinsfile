@@ -10,20 +10,31 @@ pipeline {
                 sh 'cft -h'
             }
         }
-        stage('Sourcing Env vars') {
-            steps {
-                sh 'cp /home/tomcat/cft-env-vars . && . ./cft-env-vars && printenv'
-            }
-        }
         stage('Create Project') {
+            environment {
+                // Using returnStdout
+                CFT_ORGANIZATION_FOLDER = """${sh(
+                        returnStdout: true,
+                        script: 'cp /home/tomcat/cft-env-vars . && . ./cft-env-vars && printenv | grep CFT_ORGANIZATION_FOLDER | cut -d"=" -f2'
+                    )}""" 
+                // Using returnStdout
+                CFT_ORGANIZATION_ID = """${sh(
+                        returnStdout: true,
+                        script: 'cp /home/tomcat/cft-env-vars . && . ./cft-env-vars && printenv | grep CFT_ORGANIZATION_ID | cut -d"=" -f2'
+                    )}""" 
+                // Using returnStdout
+                CFT_BILLING_ACCOUNT_ID = """${sh(
+                        returnStdout: true,
+                        script: 'cp /home/tomcat/cft-env-vars . && . ./cft-env-vars && printenv | grep CFT_BILLING_ACCOUNT_ID | cut -d"=" -f2'
+                    )}""" 
+                // Using returnStdout
+                CFT_PIPELINE_DEPLOYER_ROLE = """${sh(
+                        returnStdout: true,
+                        script: 'cp /home/tomcat/cft-env-vars . && . ./cft-env-vars && printenv | grep CFT_PIPELINE_DEPLOYER_ROLE | cut -d"=" -f2'
+                    )}""" 
+            }
             steps {
-                echo '-----------------'
                 sh 'printenv'
-                // echo 'Source cft environment variables, running cft'
-                // sh 'cp /home/tomcat/cft-env-vars . && \
-                //     . ./cft-env-vars && printenv && \
-                //     cft create project.yaml
-                //     '
             }
         }
     }
