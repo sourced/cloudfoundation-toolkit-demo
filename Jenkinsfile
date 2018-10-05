@@ -14,6 +14,11 @@ pipeline {
         stage('Test Access') {
             steps {
                 echo '-----------------'
+                echo 'Source CFT_ENV_VARS'
+                sh 'source $HOME/cft-env-vars'
+                echo '-----------------'
+                sh 'printenv'
+                echo '-----------------'
                 echo 'gcloud projects list'
                 sh 'gcloud projects list'
                 echo '-----------------'

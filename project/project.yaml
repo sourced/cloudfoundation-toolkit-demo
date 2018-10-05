@@ -3,15 +3,15 @@
 # In this example, a project is created, along with some of the
 # resources that an enterprise is likely to need for regular operations.
 #
-# Note that the `parent.type` property defaults to "organization", so it
+# Note that the `parent_type` property defaults to "organization", so it
 # does not need to be specified in the config. It is specified here for
-# informational purposes.
+# informational purposes. Allowed values are 'organization' or 'folder'
 #
 # See `templates/project.py.schema` for detailed information on the
 # properties.
 #
-# Replace the `parent.id` placeholder with your organization ID.
-# Replace the `billingAccountId` placeholder with your billing
+# Replace the `parent_id` placeholder with your organization ID/folder ID.
+# Replace the `billing_account_id` placeholder with your billing
 # account ID.
 
 imports:
@@ -23,19 +23,20 @@ resources:
     type: project.py
     properties:
       parent:
-        type: organization
-        id: <FIXME:OrgID>
-      billingAccountId: <FIXME:BillingAccount:ID>
+        type: <FIXME:parent_type> # organization or folder
+        id: <FIXME:parent_id> # OrgID or folder ID
+      billingAccountId: <FIXME:billing_account_id>
       activateApis:
         - compute.googleapis.com
         - deploymentmanager.googleapis.com
         - pubsub.googleapis.com
       serviceAccounts:
-        - accountId: test-sa-1
-          displayName: test service account 1
+        - accountId: cft-demo-sa-0
+          displayName: demo service account
           roles:
             - roles/editor
             - roles/viewer
+            - <FIXME:pipeline_deployer_role_name>
           networkAccess: true
       usageExportBucket: true
       sharedVPC: test-vpc-host-project
