@@ -9,7 +9,7 @@ pipeline {
                 echo 'PRINTENV'
                 sh 'printenv'
                 echo 'Checking CFT Version'
-                sh 'cft -v'
+                sh 'cft -h'
                 echo '-----------------'
                 echo 'Source CFT_ENV_VARS'
                 sh 'cp /home/tomcat/cft-env-vars . && source cft-env-vars'
