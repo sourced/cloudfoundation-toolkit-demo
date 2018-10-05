@@ -7,10 +7,10 @@ pipeline {
         stage('Source CFT Environment Variables') {
             steps {
                 echo '-----------------'
+                sh 'printenv'
+                echo '-----------------'
                 echo 'Source CFT_ENV_VARS'
                 sh './home/tomcat/cft-env-vars'
-                echo '-----------------'
-                sh 'printenv'
                 echo '-----------------'
                 echo 'Checking CFT Version'
                 sh 'cft -v'
