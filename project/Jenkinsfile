@@ -23,6 +23,9 @@ pipeline {
                 echo '------------------'
                 echo 'Checking CFT Help'
                 sh 'cft -h'
+                echo '------------------'
+                echo 'gcloud check sa account'
+                sh 'gcloud config get-value account'
             }
         }
         stage('Execute CFT') {
