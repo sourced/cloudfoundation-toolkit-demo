@@ -1,9 +1,10 @@
 # Example of the project template usage.
 
+name: cft-demo-project-0
+project: {{env.CFT_PROJECT_ID}}
 imports:
   - path: templates/project/project.py
     name: project.py
-
 resources:
   - name: sourced-cftdemo-0
     type: project.py
