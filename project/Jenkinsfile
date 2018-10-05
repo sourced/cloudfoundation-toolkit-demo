@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Execute CFT') {
             environment {
-                CONFIG="project/"
+                CONFIG="$WORKSPACE/project/"
             }
             steps {
                 echo '------------------'
