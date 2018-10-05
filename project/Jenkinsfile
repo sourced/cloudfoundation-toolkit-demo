@@ -12,41 +12,29 @@ pipeline {
         }
         stage('Create Project') {
             environment {
-                // Using returnStdout
-                CFT_ORGANIZATION_FOLDER = """${sh(
+                CFT_ORGANIZATION_FOLDER_ID = """${sh(
                         returnStdout: true,
                         script: 'cp /home/tomcat/cft-env-vars . && . ./cft-env-vars && echo $CFT_ORGANIZATION_FOLDER_ID'
                     )}""" 
-                // Using returnStdout
                 CFT_ORGANIZATION_ID = """${sh(
                         returnStdout: true,
                         script: 'cp /home/tomcat/cft-env-vars . && . ./cft-env-vars && echo $CFT_ORGANIZATION_ID'
                     )}""" 
-                // Using returnStdout
                 CFT_BILLING_ACCOUNT_ID = """${sh(
                         returnStdout: true,
                         script: 'cp /home/tomcat/cft-env-vars . && . ./cft-env-vars && echo $CFT_BILLING_ACCOUNT_ID'
                     )}""" 
-                // Using returnStdout
                 CFT_PIPELINE_DEPLOYER_ROLE = """${sh(
                         returnStdout: true,
                         script: 'cp /home/tomcat/cft-env-vars . && . ./cft-env-vars && echo $CFT_PIPELINE_DEPLOYER_ROLE'
                     )}""" 
             }
             steps {
-                sh 'printenv'
+                echo '------------------'
+                sh 'printenv | grep CFT_'
+                echo '------------------'
+                sh 'cft project.yaml'
             }
-        }
-    }
-    post {
-        always {
-            echo 'This will always run'
-        }
-        success {
-            echo 'This will run only if successful'
-        }
-        failure {
-            echo 'This will run only if failed'
         }
     }
 }

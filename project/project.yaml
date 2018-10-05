@@ -19,7 +19,7 @@ imports:
     name: project.py
 
 resources:
-  - name: sourced-cftdemo-1
+  - name: sourced-cftdemo-0
     type: project.py
     properties:
       parent:
