@@ -19,13 +19,13 @@ imports:
     name: project.py
 
 resources:
-  - name: <FIXME:UniqueProjectName>
+  - name: {{CLOUD_FOUNDATION_TOOLKIT_PROJECT_NAME}}
     type: project.py
     properties:
       parent:
-        type: <FIXME:parent_type> # organization or folder
-        id: <FIXME:parent_id> # OrgID or folder ID
-      billingAccountId: <FIXME:billing_account_id>
+        type: {{CLOUD_FOUNDATION_TOOLKIT_PARENT}} # organization or folder
+        id: {{CLOUD_FOUNDATION_TOOLKIT_FOLDER_ID}} # OrgID or folder ID
+      billingAccountId: {{CLOUD_FOUNDATION_TOOLKIT_BILLING_ID}}
       activateApis:
         - compute.googleapis.com
         - deploymentmanager.googleapis.com
@@ -36,10 +36,10 @@ resources:
           roles:
             - roles/editor
             - roles/viewer
-            - <FIXME:pipeline_deployer_role_name>
+            - {{CLOUD_FOUNDATION_TOOLKIT_PIPELINE_ROLE}}
           networkAccess: true
       usageExportBucket: true
-      sharedVPC: test-vpc-host-project
-      sharedVPCSubnets:
-        - subnetId: subnet-1
-          region: us-east1
+      # sharedVPC: test-vpc-host-project
+      # sharedVPCSubnets:
+      #   - subnetId: subnet-1
+      #     region: us-east1
