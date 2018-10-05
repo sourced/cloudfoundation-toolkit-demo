@@ -8,7 +8,11 @@ pipeline {
             steps {
                 echo '-----------------'
                 echo 'Source CFT_ENV_VARS'
-                sh 'source $HOME/cft-env-vars'
+                script {
+                    source $HOME/cft-env-vars
+                }
+                echo '-----------------'
+                sh 'printenv'
                 echo '-----------------'
                 echo 'Checking CFT Version'
                 sh 'cft -v'
