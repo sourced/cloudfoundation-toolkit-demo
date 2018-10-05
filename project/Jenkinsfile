@@ -14,7 +14,6 @@ pipeline {
             environment {
                 // Using returnStdout
                 CFT_ORGANIZATION_FOLDER = """${sh(
-                        returnStdout: true,
                         script: 'cp /home/tomcat/cft-env-vars . && . ./cft-env-vars && printenv | grep CFT_ORGANIZATION_FOLDER | cut -d"=" -f2'
                     )}""" 
                 // Using returnStdout
