@@ -19,24 +19,24 @@ imports:
     name: project.py
 
 resources:
-  - name: {{CLOUD_FOUNDATION_TOOLKIT_PROJECT_NAME}}
+  - name: sourced-cftdemo-1
     type: project.py
     properties:
       parent:
-        type: {{CLOUD_FOUNDATION_TOOLKIT_PARENT}} # organization or folder
-        id: {{CLOUD_FOUNDATION_TOOLKIT_FOLDER_ID}} # OrgID or folder ID
-      billingAccountId: {{CLOUD_FOUNDATION_TOOLKIT_BILLING_ID}}
+        type: folder # organization or folder
+        id: {{env.CFT_ORGANIZATION_FOLDER_ID}} # OrgID or folder ID
+      billingAccountId: {{env.CFT_BILLING_ACCOUNT_ID}}
       activateApis:
         - compute.googleapis.com
         - deploymentmanager.googleapis.com
         - pubsub.googleapis.com
       serviceAccounts:
         - accountId: cft-demo-sa-0
-          displayName: demo service account
+          displayName: cft demo service account 0
           roles:
             - roles/editor
             - roles/viewer
-            - {{CLOUD_FOUNDATION_TOOLKIT_PIPELINE_ROLE}}
+            - {{env.CFT_PIPELINE_DEPLOYER_ROLE}}
           networkAccess: true
       usageExportBucket: true
       # sharedVPC: test-vpc-host-project

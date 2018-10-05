@@ -4,43 +4,37 @@ pipeline {
     agent any
     
     stages{
-        stage('Source CFT Environment Variables') {
+        stage('Checking cft Installation') {
             steps {
-                echo 'PRINTENV'
-                sh 'printenv'
                 echo 'Checking CFT Version'
                 sh 'cft -h'
-                echo '-----------------'
-                echo 'Source CFT_ENV_VARS'
+            }
+        }
+        stage('Sourcing Env vars') {
+            steps {
                 sh 'cp /home/tomcat/cft-env-vars . && . ./cft-env-vars && printenv'
             }
         }
         // stage('Create Project') {
         //     steps {
         //         echo '-----------------'
-        //         sh 'printenv'
-        //         echo '-----------------'
-        //         // echo 'cft create project.yaml'
-        //         // sh 'cft create project.yaml'
+        //         echo 'Source cft environment variables, running cft'
+        //         sh 'cp /home/tomcat/cft-env-vars . && \
+        //             . ./cft-env-vars && printenv && \
+        //             cft create project.yaml
+        //             '
         //     }
         // }
     }
     post {
-        // always {
-        //     echo 'This will always run'
-        // }
+        always {
+            echo 'This will always run'
+        }
         success {
             echo 'This will run only if successful'
         }
         failure {
             echo 'This will run only if failed'
         }
-        // unstable {
-        //     echo 'This will run only if the run was marked as unstable'
-        // }
-        // changed {
-        //     echo 'This will run only if the state of the Pipeline has changed'
-        //     echo 'For example, if the Pipeline was previously failing but is now successful'
-        // }
     }
 }
