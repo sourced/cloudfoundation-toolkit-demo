@@ -22,6 +22,5 @@ resources:
           roles:
             - roles/editor
             - roles/viewer
-            - {{env.CFT_PIPELINE_DEPLOYER_ROLE}}
           networkAccess: true
       usageExportBucket: false

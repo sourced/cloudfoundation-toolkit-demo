@@ -1,6 +1,6 @@
-name: firewall-app-team-1
+name: firewall-app-team-2
 project: sourced-cft-demo-0
-description: Firewall deployment for app-team-1
+description: Firewall deployment for app-team-2
 
 imports:
   - path: templates/firewall/firewall.py
@@ -8,13 +8,12 @@ resources:
   - type: templates/firewall/firewall.py
     name: dev-rules
     properties:
-      network: $(out.network-app-team-1.network-app-team-1-dev.name)
+      network: $(out.network-app-team-2.network-app-team-2-dev.name)
       rules:
         - name: allow-proxy-from-inside-dev
           allowed:
             - IPProtocol: tcp
               ports:
-                - "80"
                 - "443"
           description: This rule allows connectivity to the HTTP proxies
           direction: INGRESS
@@ -35,13 +34,12 @@ resources:
   - type: templates/firewall/firewall.py
     name: prod-rules
     properties:
-      network: $(out.network-app-team-1.network-app-team-1-prod.name)
+      network: $(out.network-app-team-2.network-app-team-2-prod.name)
       rules:
         - name: allow-proxy-from-inside-prod
           allowed:
             - IPProtocol: tcp
               ports:
-                - "80"
                 - "443"
           description: This rule allows connectivity to the HTTP proxies
           direction: INGRESS

@@ -1,6 +1,6 @@
 name: network-app-team-1
 project: sourced-cft-demo-0
-description: Network deployment for team 1
+description: Network deployment for app-team-1
 
 imports:
   - path: templates/network/network.py
