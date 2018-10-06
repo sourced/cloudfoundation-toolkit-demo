@@ -7,13 +7,13 @@ imports:
     name: gke.py
 
 resources:
-  - name: app-team-1-prod-gke-cluster
+  - name: app-team-1-prod
     type: gke.py
     properties:
       clusterLocationType: Regional
       region: us-east1
       cluster:
-        name: app-team-1-prod-gke-cluster
+        name: app-team-1-prod
         description: App Team 1 PROD GKE Cluster
         network: network-app-team-1-prod
         subnetwork: subnet-app-team-1-prod

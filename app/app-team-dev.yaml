@@ -7,12 +7,12 @@ imports:
     name: gke.py
 
 resources:
-  - name: app-team-1-dev-gke-cluster
+  - name: app-team-1-dev
     type: gke.py
     properties:
       zone: us-east1-b
       cluster:
-        name: app-team-1-dev-gke-cluster
+        name: app-team-1-dev
         description: App Team 1 DEV GKE Cluster
         network: network-app-team-1-dev
         subnetwork: subnet-app-team-1-dev
