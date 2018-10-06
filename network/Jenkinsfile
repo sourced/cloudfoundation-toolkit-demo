@@ -8,7 +8,7 @@ pipeline {
             steps {
                 echo '------------------'
                 echo 'Cleaning dirs'
-                sh 'rm -rf cft demo'
+                sh 'rm -rf cft'
                 echo '------------------'
                 echo 'Cloning DM Samples github repo'
                 sh 'git clone https://github.com/sourced/deploymentmanager-samples cft'

@@ -2,44 +2,35 @@
 
 pipeline {
     agent any
-    
+
     stages{
-        stage('Source CFT Environment Variables') {
+        stage('Checkout Repos') {
             steps {
-                echo '-----------------'
-                echo 'Source CFT_ENV_VARS'
-                sh 'source $HOME/cft-env-vars'
-                echo '-----------------'
+                echo '------------------'
+                echo 'Cleaning dirs'
+                sh 'rm -rf cft'
+                echo '------------------'
+                echo 'Cloning DM Samples github repo'
+                sh 'git clone https://github.com/sourced/deploymentmanager-samples cft'
+                sh 'cd cft && git checkout tool && cd ..'
+            }
+        }
+        stage('Checking cft Installation') {
+            steps {
+                echo '------------------'
                 echo 'Checking CFT Version'
                 sh 'cft -v'
             }
         }
-        stage('Create Kubernetes Clusters for Team1, Team2') {
+        stage('Execute CFT') {
+            environment {
+                CONFIG="$WORKSPACE/app/"
+            }
             steps {
-                echo '-----------------'
-                sh 'printenv'
-                echo '-----------------'
-                // echo 'cft create gke-team1.yaml gke-team2.yaml'
-                // sh 'cft create gke-team1.yaml gke-team2.yaml'
+                echo '------------------'
+                echo 'Creating $CONFIG'
+                sh '. ~/cft-env-vars && cd cft/community/cloud-foundation && cft apply $CONFIG'
             }
         }
-    }
-    post {
-        // always {
-        //     echo 'This will always run'
-        // }
-        success {
-            echo 'This will run only if successful'
-        }
-        failure {
-            echo 'This will run only if failed'
-        }
-        // unstable {
-        //     echo 'This will run only if the run was marked as unstable'
-        // }
-        // changed {
-        //     echo 'This will run only if the state of the Pipeline has changed'
-        //     echo 'For example, if the Pipeline was previously failing but is now successful'
-        // }
     }
 }

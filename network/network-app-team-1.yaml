@@ -1,6 +1,5 @@
 name: network-app-team-1
 project: sourced-cft-demo-0
-
 description: Network deployment for team 1
 
 imports:

@@ -1,18 +1,22 @@
+name: app-team-1-prod
+project: sourced-cft-demo-0
+description: App Team 1 PROD GKE Cluster
+
 imports:
   - path: templates/gke/gke.py
     name: gke.py
 
 resources:
-  - name: app-team-2-gke-cluster
+  - name: app-team-1-prod-gke-cluster
     type: gke.py
     properties:
       clusterLocationType: Regional
       region: us-east1
       cluster:
-        name: app-team-2-gke-cluster
-        description: App Team 2 GKE Cluster
-        network: app-team-2-network
-        subnetwork: app-team-2-subnet
+        name: app-team-1-prod-gke-cluster
+        description: App Team 1 PROD GKE Cluster
+        network: $(out.network-app-team-1.network-app-team-1-prod.name)
+        subnetwork: $(out.network-app-team-1.network-app-team-1-prod.subNetworks[0].name)
         nodeConfig:
           oauthScopes:
             - https://www.googleapis.com/auth/compute

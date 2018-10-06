@@ -1,17 +1,21 @@
+name: app-team-1-dev
+project: sourced-cft-demo-0
+description: App Team 1 DEV GKE Cluster
+
 imports:
   - path: templates/gke/gke.py
     name: gke.py
 
 resources:
-  - name: app-team-1-gke-cluster
+  - name: app-team-1-dev-gke-cluster
     type: gke.py
     properties:
       zone: us-east1-b
       cluster:
-        name: app-team-1-gke-cluster
-        description: App Team 1 GKE Cluster
-        network: app-team-1-network
-        subnetwork: app-team-1-subnet
+        name: app-team-1-dev-gke-cluster
+        description: App Team 1 DEV GKE Cluster
+        network: $(out.network-app-team-1.network-app-team-1-dev.name)
+        subnetwork: $(out.network-app-team-1.network-app-team-1-dev.subNetworks[0].name)
         nodeConfig:
           oauthScopes:
             - https://www.googleapis.com/auth/compute

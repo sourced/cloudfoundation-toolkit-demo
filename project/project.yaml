@@ -15,6 +15,7 @@ resources:
         - compute.googleapis.com
         - deploymentmanager.googleapis.com
         - pubsub.googleapis.com
+        - container.googleapis.com
       serviceAccounts:
         - accountId: cft-demo-sa-0
           displayName: cft demo service account 0
