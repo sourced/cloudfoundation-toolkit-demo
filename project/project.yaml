@@ -1,12 +1,10 @@
-# Example of the project template usage.
-
-name: cft-demo-project-0
+name: sourced-cft-demo-0
 project: {{env.CFT_PROJECT_ID}}
 imports:
   - path: templates/project/project.py
     name: project.py
 resources:
-  - name: sourced-cftdemo-0
+  - name: sourced-cft-demo-0
     type: project.py
     properties:
       parent:
@@ -23,6 +21,5 @@ resources:
           roles:
             - roles/editor
             - roles/viewer
-            - {{env.CFT_PIPELINE_DEPLOYER_ROLE}}
           networkAccess: true
       usageExportBucket: false
