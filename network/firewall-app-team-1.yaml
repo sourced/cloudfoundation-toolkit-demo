@@ -1,25 +1,26 @@
-name: my-firewall-prod
+name: firewall-app-team-1
+project: sourced-cft-demo-0
 description: My firewalls deployment
 
 imports:
   - path: templates/firewall/firewall.py
 resources:
   - type: templates/firewall/firewall.py
-    name: app-team-1-firewall
+    name: dev-rules
     properties:
-      network: $(out.my-networks.my-network-prod.name)
+      network: $(out.network-app-team-1.network-app-team-1-dev.name)
       rules:
-        - name: allow-proxy-from-inside-app-team-1
+        - name: allow-proxy-from-inside-dev
           allowed:
             - IPProtocol: tcp
               ports:
                 - "80"
-                - "444"
+                - "443"
           description: This rule allows connectivity to the HTTP proxies
           direction: INGRESS
           sourceRanges:
             - 10.0.0.0/8
-        - name: allow-dns-from-app-team-1
+        - name: allow-dns-from-all
           allowed:
             - IPProtocol: udp
               ports:
@@ -32,16 +33,16 @@ resources:
           destinationRanges:
             - 8.8.8.8/32
   - type: templates/firewall/firewall.py
-    name: app-team-2-firewall
+    name: prod-rules
     properties:
-      network: $(out.my-networks.my-network-dev.name)
+      network: $(out.network-app-team-1.network-app-team-1-prod.name)
       rules:
-        - name: allow-proxy-from-inside-app-team-2
+        - name: allow-proxy-from-inside-prod
           allowed:
             - IPProtocol: tcp
               ports:
                 - "80"
-                - "444"
+                - "443"
           description: This rule allows connectivity to the HTTP proxies
           direction: INGRESS
           sourceRanges:
