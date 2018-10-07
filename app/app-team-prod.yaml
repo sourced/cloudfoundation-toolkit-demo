@@ -15,7 +15,7 @@ resources:
       cluster:
         name: app-team-1-prod
         description: App Team 1 PROD GKE Cluster
-        network: network-app-team-1-prod
+        network: $(out.network-app-team-1.network-app-team-1-prod.name)
         subnetwork: subnet-app-team-1-prod
         nodeConfig:
           oauthScopes:
