@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Execute CFT') {
             environment {
-                CONFIG="$WORKSPACE/network/ $WORKSPACE/app/"
+                CONFIG="$WORKSPACE/app/"
             }
             steps {
                 echo '------------------'
