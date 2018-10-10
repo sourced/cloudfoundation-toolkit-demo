@@ -13,7 +13,7 @@ resources:
       clusterLocationType: Regional
       region: us-east1
       cluster:
-        name: app-team-1-prod
+        name: app-team-1-prod-cluster
         description: App Team 1 PROD GKE Cluster
         network: $(out.network-app-team-1.network-app-team-1-prod.name)
         subnetwork: subnet-app-team-1-prod
